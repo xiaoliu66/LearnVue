@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="../js/vue.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">{{message}}</div>
+
+        <script>
+            // el的第一种写法 （常用）
+            /* const app = new Vue({
+            el: '#app',
+            data: {
+                message: ''
+            }
+        }) */
+
+            // el第二种写法（不常用）
+            /* const vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'xxx'
+            }
+        })
+        vm.$mount('#root'); */
+
+            // data的第一种写法,data是一个对象
+            /* const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'xxx'
+            }
+        }) */
+
+            // data的第二种写法，data是一个函数，返回数据对象。(组件中用的多)
+            const app = new Vue({
+                el: "#app",
+                data() {
+                    // 特别注意：data不要写成箭头函数，要写成普通函数。否则，this的指向就是windows对象，而不是Vue实例对象。
+                    console.log(this);
+                    return {
+                        message: "xxx",
+                    };
+                },
+            });
+        </script>
+    </body>
+</html>
