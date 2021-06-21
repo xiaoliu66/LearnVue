@@ -8,6 +8,12 @@
         <title>Document</title>
     </head>
     <body>
+        <!-- 
+            MVVM的理解：
+                1.M: 模型(Model) 对应data中的数据
+                2.V: 视图(View) 模板代码
+                3.VM: 视图模型(ViewModel) Vue实例对象
+         -->
         <div id="app">{{message}}</div>
 
         <script>
@@ -36,8 +42,9 @@
             }
         }) */
 
-            // data的第二种写法，data是一个函数，返回数据对象。(组件中用的多)
-            const app = new Vue({
+            // data的第二种写法，data是一个函数，且要返回数据对象。(组件中必须用函数式组件)
+            // 由Vue所调用的函数都不要写成箭头函数，会导致this指向window.
+            const vm = new Vue({
                 el: "#app",
                 data() {
                     // 特别注意：data不要写成箭头函数，要写成普通函数。否则，this的指向就是windows对象，而不是Vue实例对象。
@@ -47,6 +54,11 @@
                     };
                 },
             });
+
+            setTimeout(() => {
+                console.log(vm.msg); // 通过vm可以读取data中的数据
+                vm.message = "1111"; // 通过vm可以修改data中的数据
+            }, 1000);
         </script>
     </body>
 </html>
