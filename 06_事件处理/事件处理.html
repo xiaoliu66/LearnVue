@@ -1,67 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/vue.js"></script>
-    <title>Document</title>
-</head>
-<body>
-    <div id="app">
-        <!-- 绑定事件 标准写法 -->
-        <button v-on:click="show1">点我输出信息(v-on绑定)</button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="../js/vue.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 绑定事件 标准写法 -->
+            <button v-on:click="show1">点我输出信息(v-on绑定)</button>
 
-        <!-- 绑定事件 简写方法 -->
-        <button @click="show1">点我输出信息(@click绑定)</button>
+            <!-- 绑定事件 简写方法 -->
+            <button @click="show1">点我输出信息(@click绑定)</button>
 
-        <!-- 绑定事件 传递参数 和事件-->
-        <button @click='show2($event,666)'>点我提示 + 传递参数</button>
+            <!-- 绑定事件 传递参数 和事件-->
+            <button @click="show2($event,666)">点我提示 + 传递参数</button>
 
-        <!-- 绑定事件 阻止默认行为 prevent 是事件修饰符-->
-        <a href="https://www.baidu.com" @click.prevent="show3">点我提示信息3（阻止默认行为）</a>
+            <!-- 绑定事件 阻止默认行为 prevent 是事件修饰符-->
+            <a href="https://www.baidu.com" @click.prevent="show3">点我提示信息3（阻止默认行为）</a>
 
-        <!-- 绑定事件 阻止冒泡 stop 是事件修饰符-->
-        <div @click="show4">
-            <button @click.stop="show4">点我提示信息4（阻止冒泡）</button>
+            <!-- 绑定事件 阻止冒泡 stop 是事件修饰符-->
+            <div @click="show4">
+                <button @click.stop="show4">点我提示信息4（阻止冒泡）</button>
+            </div>
+
+            <!-- 键盘事件  -->
+            <input type="text" @keyup.enter="show5" placeholder="按下回车提示数据" />
         </div>
 
-        <!-- 键盘事件  -->
-        <input type="text" @keyup.enter="show5" placeholder="按下回车提示数据">
-
-    </div>
-
-    <script>
-     const app = new Vue({
-         el: '#app',
-         data: {
-             message: 'xxxx'
-         },
-         methods: {
-             show1(event) {
-                 console.log(this.message);
-                 console.log(event.target.innerText);
-             },
-             show2(event,number) {
-                 console.log(event);
-                 alert("信息：" + number);
-             },
-             show3(event) {
-                //  event.preventDefault(); 手动阻止
-                alert("信息3");
-             },
-             show4(event) {
-                //  event,stopPropagation(); 手动阻止
-                 alert("信息4");
-             },
-             show5(event) {
-                //  if (event.keyCode != 13) return;
-                 console.log(event.target.value);
-                 console.log(event.keyCode);
-                 console.log(event.key);
-             }
-         },
-     })
-    </script>
-</body>
+        <script>
+            const app = new Vue({
+                el: "#app",
+                data: {
+                    message: "xxxx",
+                },
+                methods: {
+                    show1(event) {
+                        console.log(this.message);
+                        console.log(event.target.innerText);
+                    },
+                    show2(event, number) {
+                        console.log(event);
+                        alert("信息：" + number);
+                    },
+                    show3(event) {
+                        //  event.preventDefault(); 手动阻止
+                        alert("信息3");
+                    },
+                    show4(event) {
+                        //  event,stopPropagation(); 手动阻止
+                        alert("信息4");
+                    },
+                    show5(event) {
+                        //  if (event.keyCode != 13) return;
+                        console.log(event.target.value);
+                        console.log(event.keyCode);
+                        console.log(event.key);
+                    },
+                },
+            });
+        </script>
+    </body>
 </html>
