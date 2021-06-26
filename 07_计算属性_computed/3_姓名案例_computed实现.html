@@ -8,6 +8,18 @@
         <title>Document</title>
     </head>
     <body>
+        <!-- 
+            1.计算属性：要显示的数据不存在，要通过计算得来。
+            2.fullName函数底层用的是对象setter和getter方法
+            3.执行的时机：
+                (1): 初始显示会执行一次，得到初始值去展示
+                (2): 当依赖的数据发生改变时会被再次调用
+            4.优势：与methods实现相比，内部有缓存机制，效率更高。
+            5.备注：计算属性是用于直接读取使用的，不要加（）
+
+         -->
+
+
         <div id="app">
             姓：
             <input type="text" v-model="firstName" />
