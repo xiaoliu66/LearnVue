@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="../js/vue.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <h2>{{x}}</h2>
+            <h2>{{y()}}</h2>
+            <!-- 如果页面上没有使用z,则vue不会调用z -->
+            <h2>{{z}}</h2> 
+        </div>
+        <script>
+            const vm = new Vue({
+                el: "#app", // 指定vm为哪个容器服务
+                data: {
+                    // 驱动页面显示的数据都放在这里
+                    x: "100",
+                },
+                methods: {
+                    // 所有用到的函数都配置在这里
+                    y() {
+                        // y直接被放到vm身上
+                        console.log("y被调用了");
+                        return 200
+                    },
+                },
+                computed: {
+                    z: {
+                        set(value) {
+                            // z的值被改变时，set执行，set中的this是vm，set会收到修改的值
+                            console.log("值被修改成：", value);
+                        },
+                        get() {
+                            // z的值被读取时或z依赖的值发生变化时，get执行（前提是页面中要使用z）
+                            console.log("z被调用了");
+                            return 900;
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
