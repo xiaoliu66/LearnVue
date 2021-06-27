@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!-- 
+			条件渲染：
+					v-if:
+						适用于：切换频率很低的场景
+						特点：不展示的DOM节点直接被删除
+					v-show:
+						适用于：切换频率很高的场景
+						特点：不展示的DOM节点没有被删除，仅仅是使用样式隐藏掉
+					
+					严重注意：使用v-if的时，DOM节点可能无法获取到，而使用v-show一定可以获取到DOM节点。
+		-->
+        <div id="app">
+            <h2>今天天气很{{isHot ? '炎热' : '凉爽'}}</h2>
+            <button @click="isHot = !isHot">切换天气</button>
+
+            <!-- 使用v-show进行条件渲染 -->
+            <!-- 天气炎热展示下面区块 -->
+            <!-- <div v-show="isHot">
+                <h3>心静自然凉</h3>
+            </div> -->
+
+            <!-- 天气凉爽是展示下面区块 -->
+            <!-- <div v-show="!isHot">
+                <h3>该穿秋裤了</h3>
+            </div> -->
+
+            <!-- 使用v-if进行条件渲染 -->
+            <div v-if="isHot">
+                <h3>心静自然凉</h3>
+            </div>
+
+            <div v-else>
+                <h3>该穿秋裤了</h3>
+            </div>
+        </div>
+        <script>
+            const app = new Vue({
+                el: "#app",
+                data: {
+                    isHot: true,
+                },
+            });
+        </script>
+    </body>
+</html>
