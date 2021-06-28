@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="../js/vue.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- v-for遍历数组 -->
+            <h2>人员列表</h2>
+            <ul>
+                <li v-for="(p,index) in persons" :key="p.id">{{p.id +"---" + p.name +"---" + p.age +"---" + p.sex}}</li>
+            </ul>
+            <!-- v-for遍历对象 -->
+            <h2>汽车信息</h2>
+            <ul>
+                <li v-for="(value,key) in car" :key="key">{{value}}</li>
+            </ul>
+            <!-- v-for遍历字符串 -->
+            <h2>遍历字符串</h2>
+            <ul>
+                <li v-for="(data,index) in str" :key="index">{{data}} --- {{index}}</li>
+            </ul>
+        </div>
+        <script>
+            const app = new Vue({
+                el: "#app",
+                data: {
+                    persons: [
+                        { id: "001", name: "老刘", age: 21, sex: "男" },
+                        { id: "002", name: "老李", age: 22, sex: "女" },
+                        { id: "003", name: "老王", age: 23, sex: "男" },
+                        { id: "004", name: "老孙", age: 22, sex: "女" },
+                    ],
+                    car: {
+                        name: "奔驰c63",
+                        price: "60万",
+                        color: "灰色",
+                    },
+                    str:"abcdefg"
+                },
+            });
+        </script>
+    </body>
+</html>
