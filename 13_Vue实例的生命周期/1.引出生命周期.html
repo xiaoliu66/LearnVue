@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="../js/vue.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <h2 :style="{opacity}">Vue学不会怎么办？</h2>
+            <button @click="death">不活了</button>
+        </div>
+
+        <script>
+            const app = new Vue({
+                el: "#app",
+                data: {
+                    opacity: 1,
+                },
+                methods: {
+                    death() {
+                        this.$destroy(); // vm还在，只是不管理root容器中的数据了，数据的监听也没了。
+                        console.log(this);
+                    },
+                },
+                // vm挂载完毕
+                mounted() {
+                    this.timer = setInterval(() => {
+                        console.log("定时器的回调正在执行。");
+                        this.opacity -= 0.1;
+                        if (this.opacity <= 0) {
+                            this.opacity = 1;
+                        }
+                    }, 200);
+                },
+                // vm将要销毁
+                beforeDestroy() {
+                    clearInterval(this.timer);
+                },
+            });
+        </script>
+    </body>
+</html>
