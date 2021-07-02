@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="../js/vue.js"></script>
+        <script src="../js/moment.min.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 用第三方函数进行日期格式化 -->
+            {{fmtDate()}} 
+            <!-- 使用Vue过滤器进行日期格式化 -->
+            {{time | dataFormater}}<br>
+            {{time | dataFormater('YYYY-MM-DD HH:mm:ss')}}
+        </div>
+        <script>
+            // 全局注册的过滤器
+            Vue.filter("dataFormater", function (value, str = "YYYY-MM-DD") {
+                return moment(value).format(str);
+            });
+
+            const app = new Vue({
+                el: "#app",
+                data: {
+                    time: Date.now(),
+                },
+                methods: {
+                    fmtDate() {
+                        return moment(this.time).format("YYYY-MM-DD");
+                    },
+                },
+            });
+        </script>
+    </body>
 </html>
