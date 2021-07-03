@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="../js/vue.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+			需求: 自定义2个指令
+					1. 功能类型于v-text, 但转换为全大写  v-upper-text
+					2. 功能类型于v-text, 但转换为全小写  v-lower-text
+		-->
+        <!-- 准备好一个容器-->
+        <div id="root">
+            <h2 v-upper-text="title"></h2>
+            <h2 v-lower-text="title"></h2>
+        </div>
+
+        <script type="text/javascript">
+            // 定义一个全局指令
+            Vue.directive("upper-text", function (el, binding) {
+                // console.log(el,binding);
+                el.innerText = binding.value.toUpperCase();
+            });
+
+            new Vue({
+                el: "#root",
+                data: {
+                    url: "http://www.atguigu.com",
+                    title: "abCdef",
+                    htmlStr: `<h4>欢迎来到尚硅谷,${this.title}</h4>`,
+                },
+                directives: {
+                    "lower-text"(el, binding) {
+                        el.innerText = binding.value.toLowerCase();
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
