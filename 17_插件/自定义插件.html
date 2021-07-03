@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="../js/vue.js"></script>
+        <script src="./MyVuePlugin.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app">
+            <h2 v-upper-text="name"></h2>
+			<h2 v-lower-text="name"></h2>
+			<h2>{{$random(2,8)}}</h2>
+        </div>
+
+        <script>
+            /* 
+				插件的定义：是一个包含install方法的对象
+			*/
+            Vue.config.productionTip = false; //关闭生产提示
+
+            //Vue会帮我们去调用atguigu这个插件里的install方法
+            Vue.use(MyVuePlugin);
+
+            console.log(Vue.projectName);
+            console.log(Vue.MyVersion);
+            Vue.showInfo();
+
+            const vm = new Vue({
+                el: "#app",
+                data: {
+                    name: "xaBcdE",
+                },
+            });
+        </script>
+    </body>
+</html>
